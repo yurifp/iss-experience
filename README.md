@@ -43,9 +43,4 @@ npm run dev
 - NASA APIs
 
 ## 📄 Licença
-
 MIT
-
-## 🏆 NASA Space Apps Challenge 2025
-
-Desenvolvido para o desafio "Aplicativos do 25º aniversário da Estação Espacial Internacional"
