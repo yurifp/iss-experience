@@ -1,10 +1,9 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/iss-experience/', // IMPORTANTE: Substitua 'iss-experience' pelo nome exato do seu repositório
+  base: '/iss-experience/',
   server: {
     port: 3000,
     open: true
@@ -12,7 +11,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
-    // Otimizações para produção
+    assetsDir: 'assets',
     rollupOptions: {
       output: {
         manualChunks: {
@@ -20,6 +19,16 @@ export default defineConfig({
           'three-vendor': ['three', '@react-three/fiber', '@react-three/drei']
         }
       }
+    }
+  },
+  // Configurações específicas para GitHub Pages
+  define: {
+    'process.env.NODE_ENV': '"production"'
+  },
+  // Resolve aliases se necessário
+  resolve: {
+    alias: {
+      '@': '/src'
     }
   }
 })
