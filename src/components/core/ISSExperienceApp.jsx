@@ -1148,7 +1148,7 @@ const ISSExperienceApp = () => {
           </div>
           
           <div className="mt-6 pt-6 border-t border-gray-800 text-center text-sm text-gray-400">
-            <p>NASA Space Apps Challenge 2025 | Dados em tempo real da NASA</p>
+          
             <p className="mt-1">Celebrando 25 anos de descobertas e cooperação internacional 🚀</p>
           </div>
         </div>
