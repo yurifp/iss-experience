@@ -11,7 +11,7 @@
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "deploy:manual": "npm run build && cd dist && git init && git add . && git commit -m \"Deploy\" --allow-empty && git branch -M main && git remote add origin https://github.com/yurifp/iss-experience.git && git push -f origin main:gh-pages && cd .."
+    "deploy:manual": "npm run build && cd dist && rmdir /s /q .git 2>nul & git init && git add . && git commit -m \"Deploy\" && git branch -M main && git remote add origin https://github.com/yurifp/iss-experience.git && git push -f origin main:gh-pages && cd .."
   },
   "dependencies": {
     "@react-three/drei": "^9.92.0",

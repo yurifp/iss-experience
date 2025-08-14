@@ -118,4 +118,4 @@ import{S as Te,P as De,W as He,a as Ue,B as Oe,b as Ze,F as We,c as Je,d as O,M,
         .animate-slide-in {
           animation: slide-in 0.3s ease-out;
         }
-      `})]})};function vs(){return e.jsx("div",{className:"App",children:e.jsx(ys,{})})}es.createRoot(document.getElementById("root")).render(e.jsx(ss.StrictMode,{children:e.jsx(vs,{})}));
+      `})]})};function vs(){return e.jsx("div",{className:"App",children:e.jsx(ys,{})})}es.createRoot(document.getElementById("root")).render(e.jsx(ss.StrictMode,{children:e.jsx(vs,{})}));console.log("Nova versão!");
