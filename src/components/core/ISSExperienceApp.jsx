@@ -1117,8 +1117,7 @@ const ISSExperienceApp = () => {
             <div>
               <h4 className="font-semibold mb-3 text-blue-400">Sobre o Projeto</h4>
               <p className="text-sm text-gray-400">
-                Experiência interativa desenvolvida para o NASA Space Apps Challenge 2025, 
-                celebrando 25 anos da Estação Espacial Internacional.
+                 Celebrando 25 anos da Estação Espacial Internacional.
               </p>
             </div>
             <div>
