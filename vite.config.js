@@ -21,11 +21,11 @@ export default defineConfig({
       }
     }
   },
-  // Configurações específicas para GitHub Pages
+
   define: {
     'process.env.NODE_ENV': '"production"'
   },
-  // Resolve aliases se necessário
+ 
   resolve: {
     alias: {
       '@': '/src'
