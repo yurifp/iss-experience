@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 
 const ISSExperienceApp = () => {
-  // State Management
+
   const [issPosition, setIssPosition] = useState({ lat: 0, lon: 0, altitude: 0, velocity: 0 });
   const [selectedExperience, setSelectedExperience] = useState(null);
   const [userScore, setUserScore] = useState(0);
@@ -30,7 +30,7 @@ const ISSExperienceApp = () => {
   const [timelinePosition, setTimelinePosition] = useState(0);
   const [peopleInSpace, setPeopleInSpace] = useState([]);
   
-  // Refs
+ 
   const mountRef = useRef(null);
   const sceneRef = useRef(null);
   const rendererRef = useRef(null);
@@ -40,7 +40,7 @@ const ISSExperienceApp = () => {
   const cameraRef = useRef(null);
   const audioRef = useRef(null);
 
-  // Enhanced ISS Experiences
+ 
   const experiences = [
     {
       id: 'cupola',
@@ -140,7 +140,7 @@ const ISSExperienceApp = () => {
     }
   ];
 
-  // Astronaut Stories Database
+  
   const astronautStoriesData = [
     {
       name: 'Chris Hadfield',
@@ -168,7 +168,7 @@ const ISSExperienceApp = () => {
     }
   ];
 
-  // Scientific Experiments Database
+  
   const experimentsData = [
     {
       id: 'protein-crystal',
@@ -202,7 +202,7 @@ const ISSExperienceApp = () => {
     }
   ];
 
-  // Achievements System
+ 
   const achievementsList = [
     { id: 'first_steps', name: 'Primeiros Passos', description: 'Complete sua primeira experiência', icon: '🚀', points: 50 },
     { id: 'explorer', name: 'Explorador', description: 'Desbloqueie 3 experiências', icon: '🔭', points: 100 },
@@ -214,7 +214,7 @@ const ISSExperienceApp = () => {
     { id: 'international', name: 'Diplomata Espacial', description: 'Aprenda sobre todos os países parceiros', icon: '🤝', points: 300 }
   ];
 
-  // Timeline histórica expandida
+ 
   const timeline = [
     { year: 1998, month: 'Nov', event: 'Lançamento do módulo Zarya (Rússia)', highlight: true, details: 'Primeiro componente da ISS lançado ao espaço' },
     { year: 1998, month: 'Dez', event: 'Unity (EUA) se conecta ao Zarya', highlight: false, details: 'Primeira conexão internacional no espaço' },
@@ -230,7 +230,7 @@ const ISSExperienceApp = () => {
     { year: 2023, month: 'Nov', event: '25 anos de operação contínua', highlight: true, details: 'Maior colaboração internacional da história' }
   ];
 
-  // Initialize Audio
+ 
   useEffect(() => {
     if (typeof window !== 'undefined' && soundEnabled) {
       audioRef.current = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBTGH0fPTgjMGHm7A7+OZURE');
@@ -239,7 +239,7 @@ const ISSExperienceApp = () => {
     }
   }, [soundEnabled]);
 
-  // Fetch ISS real-time position
+
   useEffect(() => {
     const fetchISSPosition = async () => {
       try {
@@ -259,7 +259,7 @@ const ISSExperienceApp = () => {
       }
     };
 
-    // Fetch people currently in space
+   
     const fetchPeopleInSpace = async () => {
       try {
         const response = await fetch('http://api.open-notify.org/astros.json');
@@ -281,15 +281,15 @@ const ISSExperienceApp = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Enhanced Three.js scene with Cupola view
+  
   useEffect(() => {
     if (!mountRef.current) return;
 
-    // Scene setup
+   
     const scene = new THREE.Scene();
     sceneRef.current = scene;
 
-    // Camera
+   
     const camera = new THREE.PerspectiveCamera(
       75,
       mountRef.current.clientWidth / mountRef.current.clientHeight,
@@ -299,7 +299,7 @@ const ISSExperienceApp = () => {
     camera.position.z = cupolaView ? 1.2 : 3;
     cameraRef.current = camera;
 
-    // Renderer with better quality
+   
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -308,7 +308,7 @@ const ISSExperienceApp = () => {
     mountRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
-    // Starfield
+   
     const starsGeometry = new THREE.BufferGeometry();
     const starsMaterial = new THREE.PointsMaterial({
       color: 0xFFFFFF,
@@ -328,7 +328,7 @@ const ISSExperienceApp = () => {
     scene.add(stars);
     starsRef.current = stars;
 
-    // Enhanced Earth with atmosphere
+    
     const earthGeometry = new THREE.SphereGeometry(1, 64, 64);
     const earthMaterial = new THREE.MeshPhongMaterial({
       color: 0x2e7dff,
@@ -342,7 +342,7 @@ const ISSExperienceApp = () => {
     scene.add(earth);
     earthRef.current = earth;
 
-    // Earth atmosphere
+   
     const atmosphereGeometry = new THREE.SphereGeometry(1.1, 64, 64);
     const atmosphereMaterial = new THREE.MeshPhongMaterial({
       color: 0x4444ff,
@@ -353,7 +353,6 @@ const ISSExperienceApp = () => {
     const atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial);
     scene.add(atmosphere);
 
-    // Earth clouds layer
     const cloudsGeometry = new THREE.SphereGeometry(1.05, 64, 64);
     const cloudsMaterial = new THREE.MeshPhongMaterial({
       color: 0xffffff,
@@ -363,10 +362,10 @@ const ISSExperienceApp = () => {
     const clouds = new THREE.Mesh(cloudsGeometry, cloudsMaterial);
     scene.add(clouds);
 
-    // Enhanced ISS model with solar panels
+    
     const issGroup = new THREE.Group();
     
-    // Main body
+    
     const issBodyGeometry = new THREE.BoxGeometry(0.1, 0.04, 0.15);
     const issBodyMaterial = new THREE.MeshPhongMaterial({ 
       color: 0xdddddd,
@@ -376,7 +375,7 @@ const ISSExperienceApp = () => {
     const issBody = new THREE.Mesh(issBodyGeometry, issBodyMaterial);
     issGroup.add(issBody);
     
-    // Solar panels
+    
     const panelGeometry = new THREE.BoxGeometry(0.3, 0.001, 0.1);
     const panelMaterial = new THREE.MeshPhongMaterial({ 
       color: 0x000044,
@@ -396,7 +395,7 @@ const ISSExperienceApp = () => {
     scene.add(issGroup);
     issRef.current = issGroup;
 
-    // Lighting
+ 
     const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
     scene.add(ambientLight);
     
@@ -407,23 +406,23 @@ const ISSExperienceApp = () => {
     sunLight.shadow.camera.far = 50;
     scene.add(sunLight);
 
-    // Earth glow effect
+    
     const earthGlow = new THREE.PointLight(0x4444ff, 0.5, 3);
     earthGlow.position.set(0, 0, 0);
     scene.add(earthGlow);
 
-    // Animation
+    
     const animate = () => {
       requestAnimationFrame(animate);
       
-      // Earth rotation
+     
       if (earthRef.current) {
         earthRef.current.rotation.y += 0.002;
       }
       clouds.rotation.y += 0.0015;
       clouds.rotation.x += 0.0005;
       
-      // ISS orbit
+   
       const time = Date.now() * 0.0005;
       if (issRef.current) {
         issRef.current.position.x = Math.cos(time) * 1.5;
@@ -431,27 +430,27 @@ const ISSExperienceApp = () => {
         issRef.current.position.y = Math.sin(time * 2) * 0.2;
         issRef.current.rotation.y = -time;
         
-        // Solar panel rotation
+        
         if (issRef.current.children[1]) {
           issRef.current.children[1].rotation.z = Math.sin(time * 2) * 0.1;
           issRef.current.children[2].rotation.z = -Math.sin(time * 2) * 0.1;
         }
       }
       
-      // Stars rotation
+     
       if (starsRef.current) {
         starsRef.current.rotation.x += 0.0001;
         starsRef.current.rotation.y += 0.0001;
       }
       
-      // Zero-G effect
+     
       if (zeroGMode && cameraRef.current) {
         camera.position.x = Math.sin(time * 0.5) * 0.5;
         camera.position.y = Math.cos(time * 0.3) * 0.3;
         camera.rotation.z = Math.sin(time * 0.2) * 0.1;
       }
       
-      // Cupola view effect
+      
       if (cupolaView && cameraRef.current) {
         camera.position.x = Math.sin(time * 0.1) * 0.1;
         camera.position.y = Math.cos(time * 0.1) * 0.1;
@@ -462,7 +461,7 @@ const ISSExperienceApp = () => {
     };
     animate();
 
-    // Handle resize
+    
     const handleResize = () => {
       camera.aspect = mountRef.current.clientWidth / mountRef.current.clientHeight;
       camera.updateProjectionMatrix();
@@ -470,7 +469,7 @@ const ISSExperienceApp = () => {
     };
     window.addEventListener('resize', handleResize);
 
-    // Cleanup
+    
     return () => {
       window.removeEventListener('resize', handleResize);
       if (mountRef.current && renderer.domElement) {
@@ -480,7 +479,7 @@ const ISSExperienceApp = () => {
     };
   }, [cupolaView, zeroGMode]);
 
-  // Experience selection handler
+  
   const selectExperience = useCallback((exp) => {
     if (exp.requiredLevel > userLevel) {
       showNotification(`Requer nível ${exp.requiredLevel}!`, 'warning');
@@ -503,7 +502,7 @@ const ISSExperienceApp = () => {
       setUnlockedExperiences(prev => [...prev, exp.id]);
     }
     
-    // Trigger special modes
+   
     if (exp.id === 'cupola') {
       setCupolaView(true);
       setTimeout(() => setCupolaView(false), 10000);
@@ -515,7 +514,7 @@ const ISSExperienceApp = () => {
     showNotification(`+${exp.points} pontos ganhos!`, 'success');
   }, [userLevel, achievements, unlockedExperiences]);
 
-  // Level up system
+ 
   const checkLevelUp = (score) => {
     const newLevel = Math.floor(score / 500) + 1;
     if (newLevel > userLevel) {
@@ -525,7 +524,7 @@ const ISSExperienceApp = () => {
     }
   };
 
-  // Unlock experiences based on level
+  
   const unlockNewExperiences = (level) => {
     experiences.forEach(exp => {
       if (exp.requiredLevel <= level && !unlockedExperiences.includes(exp.id)) {
@@ -535,7 +534,7 @@ const ISSExperienceApp = () => {
     });
   };
 
-  // Achievement checking
+  
   const checkAchievements = (expId) => {
     if (expId === 'cupola' && !achievements.includes('first_steps')) {
       unlockAchievement('first_steps');
@@ -551,7 +550,7 @@ const ISSExperienceApp = () => {
     }
   };
 
-  // Unlock achievement
+ 
   const unlockAchievement = (achId) => {
     const achievement = achievementsList.find(a => a.id === achId);
     if (achievement) {
@@ -561,7 +560,7 @@ const ISSExperienceApp = () => {
     }
   };
 
-  // Notification system
+  
   const showNotification = (message, type = 'info') => {
     const id = Date.now();
     const notification = { id, message, type };
@@ -571,13 +570,13 @@ const ISSExperienceApp = () => {
     }, 3000);
   };
 
-  // Load astronaut stories
+  
   useEffect(() => {
     setAstronautStories(astronautStoriesData);
     setExperiments(experimentsData);
   }, []);
 
-  // Interactive experiment simulation
+  
   const runExperiment = (expId) => {
     const exp = experiments.find(e => e.id === expId);
     if (exp) {
@@ -589,7 +588,7 @@ const ISSExperienceApp = () => {
     }
   };
 
-  // Share progress
+  
   const shareProgress = () => {
     const text = `🚀 Estou explorando a ISS no seu 25º aniversário! Nível ${userLevel}, ${userScore} pontos, ${achievements.length} conquistas! #NASA #SpaceApps2025`;
     if (navigator.share) {
@@ -600,7 +599,7 @@ const ISSExperienceApp = () => {
     }
   };
 
-  // Calculate progress percentage
+  
   const calculateProgress = () => {
     const totalExperiences = experiences.length;
     const completed = achievements.length;
@@ -609,7 +608,6 @@ const ISSExperienceApp = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-blue-900 to-black text-white overflow-x-hidden">
-      {/* Enhanced Header */}
       <header className="bg-black/50 backdrop-blur-md border-b border-blue-500/30 p-4 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center">
